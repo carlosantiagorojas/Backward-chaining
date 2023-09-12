@@ -1,0 +1,7 @@
+R5 Z & L => S
+R1 A & N => E
+R3 D | M => Z
+R2 A => M
+R4 Q & ¬W & ¬Z => N
+R6 L & M => E
+R7 B & C => Q
