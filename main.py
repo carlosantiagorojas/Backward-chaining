@@ -42,6 +42,12 @@ def main():
 
 
 def read_archive() -> list[Rule]:
+    """reads the rules from a text file and returns a list of rules
+
+    Returns:
+        list[Rule]: a list of rules
+    """
+    
     # Read rules from a text file
     file_path = "./rules.txt"
 
@@ -94,8 +100,17 @@ def read_archive() -> list[Rule]:
     return rules_base
 
 
-def backward_chaining(goal, known_facts, rules_base):
+def backward_chaining(goal: str, known_facts: str, rules_base: list[Rule]) -> bool:
+    """call the function to do the backward chaining with backtracking
 
+    Args:
+        goal (str): the goal to be proven
+        known_facts (str): the known facts
+        rules_base (list[Rule]): the rules base
+
+    Returns:
+        bool: true if the goal can be proven with the all the known facts, false if not
+    """
     # Declare the a list to keep track of the backward chaining path
     backward_chaining_path = []
     
@@ -112,7 +127,14 @@ def backward_chaining(goal, known_facts, rules_base):
 
 
 def backward_chaining_backtracking(goal: str, rules_base: list[Rule], backward_chaining_path: list[str], depth:int = 0):
-    
+    """backward chaining with backtracking altortihm
+
+    Args:
+        goal (str): the goal/premise to be proven
+        rules_base (list[Rule]): the rules base
+        backward_chaining_path (list[str]): the backward chaining path list
+        depth (int, optional): the depth of the recursion (for visualization purpouses only). Defaults to 0.
+    """
     # Select the current fact
     indent = "  " * depth
     fact = goal
