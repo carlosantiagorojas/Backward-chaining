@@ -2,16 +2,15 @@ from rule import Rule
 
 
 def main():
+    rules_base = read_archive() # Call the function to read the rules
 
-    rules_base = read_archive()
-
-    if rules_base is not None:
+    if rules_base != None:
         # Define known facts and goal separately
         known_facts = ["A", "L"]
         goal = "E"
     
         print(f"\nKnown Facts: {known_facts}")
-        print(f"Goal: {goal}\n")
+        print(f"Goal: {goal}")
     
         # Check if the goal can be proven with the known facts
         if backward_chaining(goal, known_facts, rules_base):
@@ -81,9 +80,11 @@ def backward_chaining(goal, known_facts, rules_base):
 
     # Declare the a list to keep track of the backward chaining path
     backward_chaining_path = []
+    
+    print("\nBackward chaining with backtracking...")
     backward_chaining_backtracking(goal, rules_base, backward_chaining_path)
 
-    print(f"Backward chaining path : {backward_chaining_path}")
+    print(f"\nBackward chaining path : {backward_chaining_path}")
 
     # Check if the backward chaining path contains all the known facts
     if all(fact in backward_chaining_path for fact in known_facts):
@@ -92,11 +93,12 @@ def backward_chaining(goal, known_facts, rules_base):
         return False
 
 
-def backward_chaining_backtracking(goal: str, rules_base: list[Rule], backward_chaining_path: list[str]):
+def backward_chaining_backtracking(goal: str, rules_base: list[Rule], backward_chaining_path: list[str], depth:int = 0):
 
     # Select the current fact
+    indent = "  " * depth
     fact = goal
-    print(f"Fact: {fact}")
+    print(f"{indent}Fact: {fact}")
 
     # Add the proven fact to the path of the backward chaining
     backward_chaining_path.append(fact)
@@ -109,7 +111,7 @@ def backward_chaining_backtracking(goal: str, rules_base: list[Rule], backward_c
             for premise in rule.premises:
                 # Call the function again with the premise as the new fact to do the backward chaining with backtracking
                 backward_chaining_backtracking(
-                    premise, rules_base, backward_chaining_path)
+                    premise, rules_base, backward_chaining_path, depth + 1)
 
 
 if __name__ == "__main__":
