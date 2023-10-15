@@ -7,25 +7,25 @@ def main():
     if rules_base != None:
         
         # Uncomment the following lines to read the goal and known facts from the user
-        # goal = input("\nPlease enter the goal: ").strip() # Read the goal from the user
+        goal = input("\nPlease enter the goal: ").strip() # Read the goal from the user
         
-        # known_facts = []
-        # more_input = True
+        known_facts = []
+        more_input = True
         
-        # while more_input != False:
-        #     known_fact = input("Please enter a known fact: ").strip()
-        #     known_facts.append(known_fact)
+        while more_input != False:
+            known_fact = input("Please enter a known fact: ").strip()
+            known_facts.append(known_fact)
             
-        #     new_input = input("Do you want to enter another known fact? (y/n): ").strip()
+            new_input = input("Do you want to enter another known fact? (y/n): ").strip()
             
-        #     if new_input == "n":
-        #         more_input = False
-        #     else:
-        #         more_input = True
+            if new_input == "n":
+                more_input = False
+            else:
+            more_input = True
             
-        # Define known facts and goal separately
-        known_facts = ["A", "L"]
-        goal = "E"
+        # Define known facts and goal separately (optional)
+        # known_facts = ["A", "L"]
+        # goal = "E"
 
         print(f"\nKnown Facts: {known_facts}")
         print(f"Goal: {goal}")
